@@ -1,7 +1,10 @@
+import sys
+sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
 from typing import List
-from Virus import Virus
 import copy
 import time
+
+from classes.Virus import Virus
 
 def selectionAccessGT (virusList:List[Virus])-> None:
   minIndex:int = 0

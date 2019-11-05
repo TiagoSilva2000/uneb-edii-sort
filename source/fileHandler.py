@@ -1,6 +1,10 @@
-from Virus import Virus
+import sys
+sys.path.insert(1, '/home/ttiago/codes/ed2/trab1/source')
+
 from typing import List
 import time
+
+from classes.Virus import Virus
 from Selection import *
 from Quick import *
 from Merge import *
@@ -17,7 +21,7 @@ def clearString(tempStr:str)-> str:
 def createObjList()-> List:
   objList:List = []
   tempList:List[str] = []
-  for virusLine in open("../dados.csv", "r"):
+  for virusLine in open("/files/source/dados.csv", "r"):
     tempList = virusLine.split(";")
     tempList[-1] = clearString(tempList[-1])
     objList.append(Virus(tempList))
@@ -47,7 +51,6 @@ def buildMergeList (mergeTimes:List[float])->None:
   mergeTimes.append(registerTime(mergeAccessGT))
   mergeTimes.append(registerTime(mergeAccessLT))
   mergeTimes.append(registerTime(mergeionDateLT))
-
 
 def buildHeapList (heapTimes:List[float])->None:
   heapTimes.append(registerTime(heapAccessGT))
