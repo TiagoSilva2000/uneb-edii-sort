@@ -1,14 +1,23 @@
 import sys
-sys.path.insert(1, '/home/ttiago/codes/ed2/trab1/source')
+sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
 
 from typing import List
 import time
 
 from classes.Virus import Virus
-from Selection import *
-from Quick import *
-from Merge import *
-from Heap import *
+from source.Selection import *
+from source.Quick import *
+from source.Merge import *
+from source.Heap import *
+
+def accessLT(arr:List[Virus], a:int, b:int)-> bool:
+  return arr[a].getAccess() < arr[b].getAccess()
+
+def accessGT(arr:List[Virus], a:int, b:int)-> bool:
+  return arr[a].getAccess() > arr[b].getAccess()
+
+def dateLT(arr:List[Virus], a:int, b:int)-> bool:
+  return arr[a].getDate() < arr[b].getDate()
 
 def clearString(tempStr:str)-> str:
   newStr:str = ""
@@ -50,7 +59,7 @@ def buildQuickList (quickTimes:List[float])->None:
 def buildMergeList (mergeTimes:List[float])->None:
   mergeTimes.append(registerTime(mergeAccessGT))
   mergeTimes.append(registerTime(mergeAccessLT))
-  mergeTimes.append(registerTime(mergeionDateLT))
+  mergeTimes.append(registerTime(mergeDateLT))
 
 def buildHeapList (heapTimes:List[float])->None:
   heapTimes.append(registerTime(heapAccessGT))

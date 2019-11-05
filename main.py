@@ -1,6 +1,5 @@
 import sys
 sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
-
 from typing import TYPE_CHECKING
 from typing import List, TextIO, Dict
 from classes.Virus import Virus

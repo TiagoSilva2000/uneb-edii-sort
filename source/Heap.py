@@ -3,16 +3,7 @@ sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
 
 from classes.Virus import Virus
 from typing import List
-from .fileHandler import createObjList
-
-def accessLT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getAccess() < arr[b].getAccess()
-
-def accessGT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getAccess() > arr[b].getAccess()
-
-def dateLT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getDate() < arr[b].getDate()
+from .fileHandler import accessGT, accessLT, dateLT
 
 def maintain_heap(arr:List[Virus], size:int, parent:int, compareFunction):
   left:int = parent * 2 + 1; right:int = parent * 2 + 2; heaper:int = parent
@@ -51,4 +42,3 @@ def heapAccessLT(objList:List[Virus]):
 def heapDateLT(objList:List[Virus]):
   heapSort(objList, dateLT)
 
-objList:List = createObjList()

@@ -3,7 +3,6 @@ sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
 from typing import List
 import copy
 import time
-
 from classes.Virus import Virus
 
 def selectionAccessGT (virusList:List[Virus])-> None:
