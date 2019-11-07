@@ -10,15 +10,6 @@ from source.Quick import *
 from source.Merge import *
 from source.Heap import *
 
-def accessLT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getAccess() < arr[b].getAccess()
-
-def accessGT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getAccess() > arr[b].getAccess()
-
-def dateLT(arr:List[Virus], a:int, b:int)-> bool:
-  return arr[a].getDate() < arr[b].getDate()
-
 def clearString(tempStr:str)-> str:
   newStr:str = ""
   for i in tempStr:
@@ -30,7 +21,7 @@ def clearString(tempStr:str)-> str:
 def createObjList()-> List:
   objList:List = []
   tempList:List[str] = []
-  for virusLine in open("/files/source/dados.csv", "r"):
+  for virusLine in open("files/source/dados.csv", "r"):
     tempList = virusLine.split(";")
     tempList[-1] = clearString(tempList[-1])
     objList.append(Virus(tempList))
@@ -46,7 +37,6 @@ def registerTime(functionToCall)-> float:
   return (t2Selec - t1Selec)
 
 def buildSelectionList (selecTimes:List[float])-> None:
-
   selecTimes.append(registerTime(selectionAccessGT))
   selecTimes.append(registerTime(selectionAccessLT))
   selecTimes.append(registerTime(selectionDateLT))

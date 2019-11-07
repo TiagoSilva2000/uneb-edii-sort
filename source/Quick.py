@@ -1,35 +1,41 @@
 import sys
-sys.path.insert(3, '/home/ttiago/codes/ed2/trab1')
+sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
 
-from source.fileHandler import dateLT, accessGT, accessLT
+# from main import dateLT, accessGT, accessLT
 import random
+from typing import List
+from classes.Virus import Virus
+import copy
 
-def swap(listy, i, j):
-    aux = listy[i]
-    listy[i] = listy[j]
-    listy[j] = aux
+def accessLT(arr:List[Virus], a:int, comp:Virus)-> bool:
+  return arr[a].getAccess() < comp.getAccess()
 
+def accessGT(arr:List[Virus], a:int, comp:Virus)-> bool:
+  return arr[a].getAccess() > comp.getAccess()
 
-def quickSort(listy, initialPosition, finalPosition, cmpFunction):
-    if initialPosition < finalPosition :
-        pivo = partition(listy, initialPosition, finalPosition, cmpFunction)
-        quickSort(listy, initialPosition, (pivo-1), cmpFunction)
-        quickSort(listy, (pivo + 1), finalPosition, cmpFunction)
+def dateLT(arr:List[Virus], a:int, comp:Virus)-> bool:
+  return arr[a].getDate() < comp.getDate()
 
-def partition(listy, initialPosition, finalPosition, cmpFunction):
-    pivo = listy[initialPosition]
-    pivoPlace = initialPosition
-    walker = initialPosition + 1
+def quickSort(listy, initialPosition, finalPosition, cmpFunction)-> None:
+    if initialPosition < finalPosition:
+        pivotIdx:int = partition(listy, initialPosition, finalPosition, cmpFunction)
+        quickSort(listy, initialPosition, (pivotIdx-1), cmpFunction)
+        quickSort(listy, (pivotIdx + 1), finalPosition, cmpFunction)
 
-    while walker <= finalPosition:
-        if(cmpFunction(listy, walker, pivoPlace)):
-            pivoPlace+=1
-            swap(listy, pivoPlace, walker)
-        walker+=1
+def partition(listy, initialPosition, finalPosition, cmpFunction)-> int:
+    pivotValue:Virus = copy.copy(listy[finalPosition])
+    leftIdx:int = initialPosition - 1; rightIdx:int = initialPosition
 
-    swap(listy, initialPosition, pivoPlace)
+    while rightIdx < (finalPosition - 1):
+      if cmpFunction(listy, rightIdx, pivotValue):
+        leftIdx += 1
+        listy[leftIdx], listy[rightIdx] = listy[rightIdx], listy[leftIdx]
+      rightIdx += 1
 
-    return pivoPlace
+    leftIdx += 1
+    listy[leftIdx], listy[finalPosition] = listy[finalPosition], listy[leftIdx]
+
+    return leftIdx
 
 def quickDateLT(listy):
   quickSort(listy, 0, len(listy)-1, dateLT)

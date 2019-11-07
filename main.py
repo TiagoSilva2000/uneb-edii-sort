@@ -1,19 +1,26 @@
 import sys
 sys.path.insert(1, '/home/ttiago/codes/ed2/trab1')
+
 from typing import TYPE_CHECKING
 from typing import List, TextIO, Dict
 from classes.Virus import Virus
-# from source import Heap, Merge, Quick, Selection, fileHandler
 from source import fileHandler
-from source import Selection
 import time
 
 def writeToLog(sortName:str, sortArray:List):
-  log = open("../log/" + sortName + ".txt", "a")
+  log = open("files/log/" + sortName + ".txt", "a")
   log.write("[{} Sort] (AccessionGT - {}) (AccessionLT - {}) (DateLT - {})\n"
-            .format(sortName, selecTimes[0], selecTimes[1], selecTimes[2]))
+            .format(sortName, sortArray[0], sortArray[1], sortArray[2]))
   log.close()
 
+# def accessLT(arr:List[Virus], a:int, b:int)-> bool:
+#   return arr[a].getAccess() < arr[b].getAccess()
+
+# def accessGT(arr:List[Virus], a:int, b:int)-> bool:
+#   return arr[a].getAccess() > arr[b].getAccess()
+
+# def dateLT(arr:List[Virus], a:int, b:int)-> bool:
+#   return arr[a].getDate() < arr[b].getDate()
 
 # Declaration:
 t1merge:float = 0; t2merge:float = 0
